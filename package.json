@@ -1,0 +1,31 @@
+{
+    "name": "review-bot",
+    "version": "1.0.0",
+    "description": "",
+    "engines": {
+      "node": "10.14.1",
+      "npm": "6.4.1"
+    },
+    "main": "main.js",
+    "scripts": {
+      "start": "node main.js"
+    },
+    "author": "Pedro Araujo",
+    "dependencies": {
+      "@google-cloud/datastore": "^5.0.5",
+      "curl": "^0.1.4",
+      "dotenv": "^8.2.0",
+      "google-auth-library": "^1.6.1",
+      "google-translate-api": "^2.3.0",
+      "googleapis": "^30.0.0",
+      "npm": "^6.13.7",
+      "request": "^2.88.2"
+    },
+    "devDependencies": {
+      "eslint": "^6.8.0",
+      "eslint-config-airbnb-base": "^14.0.0",
+      "eslint-plugin-import": "^2.20.1"
+    }
+  }
+  
+  
