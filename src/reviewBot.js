@@ -16,7 +16,7 @@ exports.generateAndroidMessage = (score, user, text, flag, version, device, last
 
 exports.sendMessageToWebhook = (country, platform, msg, sendRequests) => {
     const username = `${platform}-Smartbox-ReviewBot`;
-    const iconUrl = `https://github.com/eiselems/eiselems.github.io/blob/images/stuff/${platform}.png?raw=true`;
+    const iconUrl = `https://github.com/smartboxgroup/review-bot/blob/master/img/${platform}.png?raw=true`;
     const queryBody = { text: msg, username, icon_url: iconUrl, channel: "" };
     if (sendRequests) {
         request({
