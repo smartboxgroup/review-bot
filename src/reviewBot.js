@@ -6,10 +6,18 @@ exports.generateMessage = (score, user, url, title, text, flag, version) => {
     return `[${scoreText} by **${user}** :${flag}: on Version ${version}](${url}): **${title}**\n${text}`;
 }
 
+exports.generateAndroidMessage = (score, user, text, flag, version, device, lastModified) => {
+    const scoreText = ':star:'.repeat(score);
+    console.log(lastModified)
+    const date = new Date(0)
+    date.setUTCSeconds(lastModified)
+    return `[${scoreText} by **${user}** :${flag}: on Version ${version}: Device: ${device} at: ${date}]\n${text}`;
+}
+
 exports.sendMessageToWebhook = (country, platform, msg, sendRequests) => {
     const username = `${platform}-Smartbox-ReviewBot`;
     const iconUrl = `https://github.com/eiselems/eiselems.github.io/blob/images/stuff/${platform}.png?raw=true`;
-    const queryBody = { text: msg, username, icon_url: iconUrl, channel: "ben-app-store-reviews" };
+    const queryBody = { text: msg, username, icon_url: iconUrl, channel: "" };
     if (sendRequests) {
         request({
             url: `${mattermostWebHookUrl}`,
@@ -19,7 +27,7 @@ exports.sendMessageToWebhook = (country, platform, msg, sendRequests) => {
         }, (error, response, body) => {
             if (error) {
                 console.log(error);
-                throw new Error('Error sending message to webhook. Thanks Mattermost I love you!');
+                throw new Error('Error sending message to webhook.');
             }
         });
     }

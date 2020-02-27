@@ -1,6 +1,7 @@
 const { fetchIosReviews } = require('./src/iosReviewBot');
 const { fetchAndroidReviews } = require('./src/androidReviewBot');
 const { getReviews } = require('./src/database');
+const cron = require('node-cron');
 
 startIos = async () => {
     const iosIds = await getReviews("iOS");
@@ -24,6 +25,8 @@ startAndroid = async () => {
     fetchAndroidReviews("android.bundle.identifier", mergedAndroidIds, "Android");
 }
 
-
-startAndroid();
-startIos(); 
+// Twelve hours
+cron.schedule("* * 12 * *", function() {
+    startAndroid(); 
+    startIos();
+})

@@ -3,7 +3,7 @@ const keys = require('../android-keys.json');
 
 const {
     sendMessageToWebhook,
-    generateMessage
+    generateAndroidMessage
 } = require('./reviewBot');
 
 const { saveReviews } = require('./database');
@@ -22,26 +22,23 @@ fetchAndroidReviews = async (bundle, androidIds, key) => {
 
     client.request({ url: androidUrl }).then((res) => {
         const reviewData = res.data.reviews;
-        console.log(reviewData)
 
         reviewData.forEach((review) => {
             const { reviewId } = review;
             const author = review.authorName;
             const userReview = review.comments[0].userComment;
-            console.log(userReview)
             const { text } = userReview;
             const rating = userReview.starRating;
             const fiveDigitLanguage = userReview.reviewerLanguage;
+            const device = userReview.device;
+            const lastModified = userReview.lastModified.seconds;
             const version = userReview.appVersionName;
-            const href = '';
-            const title = '';
             const twoDigitLanguage = fiveDigitLanguage.substring(0, 2);
 
             if (!androidIds.includes(reviewId)) {
-                const msg = generateMessage(rating, author, href, title, text, twoDigitLanguage, version);
-                console.log(msg)
+                const msg = generateAndroidMessage(rating, author, text, twoDigitLanguage, version, device, lastModified);
                 try {
-                    sendMessageToWebhook(twoDigitLanguage, androidPlatform, msg, false);
+                    sendMessageToWebhook(twoDigitLanguage, androidPlatform, msg, true);
                     androidIds.push(reviewId);
                 } catch (error) {
                     console.log(error);
