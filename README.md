@@ -1,14 +1,6 @@
 # ReviewBot
 A script that keeps track of existing reviews and posts new ones to Mattermost.
 
-Please recursively clone this repo to kick start your project and delete the files/folders that you don't require. 
-
-```bash
- git clone --recurse-submodules https://github.com/smartboxgroup/review-bot.git
- ```
-
-Then delete the .git folder and start a new git project with `git init`.
-
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
